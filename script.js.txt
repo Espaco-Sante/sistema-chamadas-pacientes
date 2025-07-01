@@ -145,3 +145,120 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('atender-paciente').addEventListener('click', marcarAtendimentoConcluido);
 });
+// script.js (Parte da Área de Configurações)
+
+const supabaseUrl = 'https://your-supabase-url.supabase.co'; // Substitua com o seu URL do Supabase
+const supabaseKey = 'your-anon-key'; // Substitua com sua chave anônima
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// Função para adicionar uma nova sala
+async function adicionarSala() {
+    const nomeSala = document.getElementById('nova-sala').value;
+    
+    if (!nomeSala) {
+        alert('Digite o nome da sala');
+        return;
+    }
+
+    const { data, error } = await supabase
+        .from('salas')
+        .insert([{ nome: nomeSala }]);
+
+    if (error) {
+        console.error('Erro ao adicionar sala:', error);
+        return;
+    }
+
+    alert('Sala adicionada com sucesso!');
+    carregarSalas();
+}
+
+// Função para carregar as salas existentes
+async function carregarSalas() {
+    const { data, error } = await supabase
+        .from('salas')
+        .select('*');
+
+    if (error) {
+        console.error('Erro ao carregar salas:', error);
+        return;
+    }
+
+    const listaSalas = document.getElementById('lista-salas');
+    listaSalas.innerHTML = ''; // Limpa a lista antes de adicionar novas salas
+
+    data.forEach(sala => {
+        const li = document.createElement('li');
+        li.textContent = sala.nome;
+        listaSalas.appendChild(li);
+    });
+}
+
+// Função para adicionar um novo profissional
+async function adicionarProfissional() {
+    const nomeProfissional = document.getElementById('novo-profissional').value;
+
+    if (!nomeProfissional) {
+        alert('Digite o nome do profissional');
+        return;
+    }
+
+    const { data, error } = await supabase
+        .from('profissionais')
+        .insert([{ nome: nomeProfissional }]);
+
+    if (error) {
+        console.error('Erro ao adicionar profissional:', error);
+        return;
+    }
+
+    alert('Profissional adicionado com sucesso!');
+    carregarProfissionais();
+}
+
+// Função para carregar os profissionais existentes
+async function carregarProfissionais() {
+    const { data, error } = await supabase
+        .from('profissionais')
+        .select('*');
+
+    if (error) {
+        console.error('Erro ao carregar profissionais:', error);
+        return;
+    }
+
+    const listaProfissionais = document.getElementById('lista-profissionais');
+    listaProfissionais.innerHTML = ''; // Limpa a lista antes de adicionar novos profissionais
+
+    data.forEach(profissional => {
+        const li = document.createElement('li');
+        li.textContent = profissional.nome;
+        listaProfissionais.appendChild(li);
+    });
+}
+
+// Função para salvar configurações de notificações
+async function salvarConfiguracoes() {
+    const tipoNotificacao = document.getElementById('tipo-notificacao').value;
+
+    const { data, error } = await supabase
+        .from('configuracoes')
+        .upsert([{ chave: 'tipo_notificacao', valor: tipoNotificacao }]);
+
+    if (error) {
+        console.error('Erro ao salvar configurações:', error);
+        return;
+    }
+
+    alert('Configurações salvas com sucesso!');
+}
+
+// Configura os eventos ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    carregarSalas();
+    carregarProfissionais();
+
+    document.getElementById('adicionar-sala').addEventListener('click', adicionarSala);
+    document.getElementById('adicionar-profissional').addEventListener('click', adicionarProfissional);
+    document.getElementById('salvar-configuracoes').addEventListener('click', salvarConfiguracoes);
+});
