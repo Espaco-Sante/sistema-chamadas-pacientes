@@ -1,0 +1,53 @@
+// script.js
+
+const supabaseUrl = 'https://your-supabase-url.supabase.co'; // Substitua com o seu URL do Supabase
+const supabaseKey = 'your-anon-key'; // Substitua com sua chave anônima
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// Função para carregar chamadas em tempo real
+async function carregarChamadas() {
+    const { data, error } = await supabase
+        .from('chamadas')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Erro ao carregar chamadas:', error);
+        return;
+    }
+
+    const listaChamadas = document.getElementById('lista-chamadas');
+    listaChamadas.innerHTML = ''; // Limpa a lista antes de adicionar novos itens
+    data.forEach(chamada => {
+        const li = document.createElement('li');
+        li.textContent = `${chamada.nome} - Sala: ${chamada.sala}`;
+        listaChamadas.appendChild(li);
+    });
+}
+
+// Função para carregar histórico de chamadas
+async function carregarHistorico() {
+    const { data, error } = await supabase
+        .from('historico_chamadas')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Erro ao carregar histórico:', error);
+        return;
+    }
+
+    const listaHistorico = document.getElementById('historico-chamadas');
+    listaHistorico.innerHTML = ''; // Limpa a lista antes de adicionar novos itens
+    data.forEach(chamada => {
+        const li = document.createElement('li');
+        li.textContent = `${chamada.nome} - Sala: ${chamada.sala} - Data: ${chamada.data}`;
+        listaHistorico.appendChild(li);
+    });
+}
+
+// Carrega os dados quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', () => {
+    carregarChamadas();
+    carregarHistorico();
+});

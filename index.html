@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Chamadas para Pacientes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Chamadas para Pacientes</h1>
+    </header>
+
+    <section id="painel-chamadas">
+        <div class="painel-container">
+            <h2>Chamadas em Tempo Real</h2>
+            <ul id="lista-chamadas">
+                <!-- Chamadas serão inseridas aqui -->
+            </ul>
+        </div>
+    </section>
+
+    <section id="historico">
+        <div class="historico-container">
+            <h2>Histórico de Chamadas</h2>
+            <ul id="historico-chamadas">
+                <!-- Histórico de chamadas -->
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sistema de Chamadas para Pacientes</p>
+    </footer>
+
+    <!-- Inclusão do SDK do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <!-- Arquivo JS com a lógica -->
+    <script src="script.js"></script>
+</body>
+</html>
