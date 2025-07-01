@@ -1,6 +1,10 @@
-/* styles.css */
+/* Estilos Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     background-color: #121212;
@@ -9,62 +13,46 @@ body {
     padding: 0;
 }
 
-/* Cabeçalho */
-header {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Título */
-h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-/* Seções */
-section {
-    padding: 20px;
-    margin: 20px;
-}
-
-/* Estilo do painel de chamadas */
-#painel-chamadas, #historico {
-    background-color: #1e1e1e;
-    border-radius: 10px;
-}
-
-/* Subtítulos */
-h2 {
+h2, h3 {
     font-size: 1.5rem;
+    color: white;
+    margin-bottom: 10px;
 }
 
-/* Estilo das listas */
-ul {
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Painel de Exibição (Para Pacientes) */
+#painel-exibicao {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    color: white;
+}
+
+.painel-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#lista-chamadas {
     list-style-type: none;
     padding: 0;
 }
 
-li {
-    background-color: #333;
+#lista-chamadas li {
+    background-color: #444;
     margin: 10px 0;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
 }
 
-/* Rodapé */
-footer {
-    background-color: #333;
-    padding: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-/* Estilos para a Área da Recepção */
+/* Área da Recepção (Para Recepcionistas) */
 #area-recepcao {
     background-color: #1e1e1e;
-    color: white;
     padding: 20px;
     border-radius: 10px;
     margin: 20px;
@@ -75,16 +63,6 @@ footer {
     flex-direction: column;
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin-top: 20px;
-}
-
 .lista-pacientes, .controle-chamada, .historico-chamadas {
     background-color: #333;
     padding: 20px;
@@ -92,12 +70,12 @@ h3 {
     margin-bottom: 20px;
 }
 
-ul {
+.lista-pacientes ul, .historico-chamadas ul {
     list-style-type: none;
     padding: 0;
 }
 
-li {
+.lista-pacientes li, .historico-chamadas li {
     background-color: #444;
     margin: 10px 0;
     padding: 10px;
@@ -120,10 +98,10 @@ button {
 button:hover {
     background-color: #4682b4;
 }
-/* Estilos para a Área dos Profissionais */
+
+/* Área dos Profissionais (Para Médicos e Profissionais) */
 #area-profissionais {
     background-color: #1e1e1e;
-    color: white;
     padding: 20px;
     border-radius: 10px;
     margin: 20px;
@@ -134,16 +112,6 @@ button:hover {
     flex-direction: column;
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin-top: 20px;
-}
-
 .lista-pacientes-chamados, .controle-atendimento, .historico-atendimentos {
     background-color: #333;
     padding: 20px;
@@ -151,97 +119,21 @@ h3 {
     margin-bottom: 20px;
 }
 
-ul {
+.lista-pacientes-chamados ul, .historico-atendimentos ul {
     list-style-type: none;
     padding: 0;
 }
 
-li {
+.lista-pacientes-chamados li, .historico-atendimentos li {
     background-color: #444;
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
 }
 
-input[type="text"], select, button {
-    padding: 10px;
-    margin: 10px 0;
-    width: 100%;
-    font-size: 1rem;
-}
-
-button {
-    background-color: #1e90ff;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #4682b4;
-}
-/* Estilos para a Área dos Profissionais */
-#area-profissionais {
-    background-color: #1e1e1e;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px;
-}
-
-.profissionais-container {
-    display: flex;
-    flex-direction: column;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin-top: 20px;
-}
-
-.lista-pacientes-chamados, .controle-atendimento, .historico-atendimentos {
-    background-color: #333;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: #444;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-input[type="text"], select, button {
-    padding: 10px;
-    margin: 10px 0;
-    width: 100%;
-    font-size: 1rem;
-}
-
-button {
-    background-color: #1e90ff;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #4682b4;
-}
-/* Estilos para a Área de Configurações */
+/* Área de Configurações (Para Administradores) */
 #area-configuracoes {
     background-color: #1e1e1e;
-    color: white;
     padding: 20px;
     border-radius: 10px;
     margin: 20px;
@@ -252,16 +144,6 @@ button:hover {
     flex-direction: column;
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin-top: 20px;
-}
-
 .gerenciar-salas, .gerenciar-profissionais, .configuracoes-notificacoes {
     background-color: #333;
     padding: 20px;
@@ -269,31 +151,6 @@ h3 {
     margin-bottom: 20px;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: #444;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-input[type="text"], select, button {
-    padding: 10px;
-    margin: 10px 0;
+.gerenciar-salas input, .gerenciar-profissionais input, .configuracoes-notificacoes select {
     width: 100%;
-    font-size: 1rem;
-}
-
-button {
-    background-color: #1e90ff;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #4682b4;
-}
+    padd
