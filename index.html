@@ -4,156 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Chamadas para Pacientes</title>
-    
-    <!-- Link para o arquivo CSS da área da recepção -->
-    <link rel="stylesheet" href="styles.css"> <!-- Certifique-se de que está correto -->
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Conteúdo da página -->
+
+    <!-- Área do Painel de Exibição (Para Pacientes) -->
+    <section id="painel-exibicao">
+        <div class="painel-container">
+            <h2>Painel de Exibição</h2>
+            <ul id="lista-chamadas">
+                <!-- Chamadas em tempo real para os pacientes -->
+            </ul>
+        </div>
+    </section>
+
+    <!-- Área da Recepção (Para Recepcionistas) -->
     <section id="area-recepcao">
         <div class="recepcao-container">
             <h2>Área da Recepção</h2>
-            <!-- Restante do conteúdo da área de recepção -->
+
+            <!-- Lista de Pacientes em Espera -->
+            <div class="lista-pacientes">
+                <h3>Pacientes em Espera</h3>
+                <ul id="lista-pacientes">
+                    <!-- Pacientes em espera serão listados aqui -->
+                </ul>
+            </div>
+
+            <!-- Controle de Chamada -->
+            <div class="controle-chamada">
+                <h3>Chamar Paciente</h3>
+                <label for="paciente-id">Selecione o Paciente:</label>
+                <select id="paciente-id">
+                    <!-- Opções de pacientes serão adicionadas aqui -->
+                </select>
+                <label for="sala">Selecione a Sala:</label>
+                <input type="text" id="sala" placeholder="Número da Sala">
+                <button id="chamar-paciente">Chamar Paciente</button>
+            </div>
+
+            <!-- Histórico de Chamadas -->
+            <div class="historico-chamadas">
+                <h3>Histórico de Chamadas</h3>
+                <ul id="historico-lista">
+                    <!-- Histórico de chamadas será mostrado aqui -->
+                </ul>
+            </div>
         </div>
     </section>
-</body>
-</html>
 
-<body>
-    <header>
-        <h1>Sistema de Chamadas para Pacientes</h1>
-    </header>
+    <!-- Área dos Profissionais (Para Médicos e Profissionais) -->
+    <section id="area-profissionais">
+        <div class="profissionais-container">
+            <h2>Área dos Profissionais</h2>
 
-    <section id="painel-chamadas">
-        <div class="painel-container">
-            <h2>Chamadas em Tempo Real</h2>
-            <ul id="lista-chamadas">
-                <!-- Chamadas serão inseridas aqui -->
-            </ul>
+            <!-- Lista de Pacientes Chamados -->
+            <div class="lista-pacientes-chamados">
+                <h3>Pacientes Chamados</h3>
+                <ul id="lista-pacientes-chamados">
+                    <!-- Pacientes chamados serão listados aqui -->
+                </ul>
+            </div>
+
+            <!-- Controle de Atendimento -->
+            <div class="controle-atendimento">
+                <h3>Controle de Atendimento</h3>
+                <label for="paciente-profissional-id">Selecione o Paciente:</label>
+                <select id="paciente-profissional-id">
+                    <!-- Opções de pacientes chamados -->
+                </select>
+                <button id="atender-paciente">Marcar como Concluído</button>
+            </div>
+
+            <!-- Histórico de Atendimentos -->
+            <div class="historico-atendimentos">
+                <h3>Histórico de Atendimentos</h3>
+                <ul id="historico-atendimentos-lista">
+                    <!-- Histórico de atendimentos será mostrado aqui -->
+                </ul>
+            </div>
         </div>
     </section>
 
-    <section id="historico">
-        <div class="historico-container">
-            <h2>Histórico de Chamadas</h2>
-            <ul id="historico-chamadas">
-                <!-- Histórico de chamadas -->
-            </ul>
+    <!-- Área de Configurações (Para Administradores) -->
+    <section id="area-configuracoes">
+        <div class="configuracoes-container">
+            <h2>Área de Configurações</h2>
+
+            <!-- Gerenciar Salas -->
+            <div class="gerenciar-salas">
+                <h3>Gerenciar Salas</h3>
+                <label for="nova-sala">Adicionar Nova Sala:</label>
+                <input type="text" id="nova-sala" placeholder="Nome da Sala">
+                <button id="adicionar-sala">Adicionar Sala</button>
+                <ul id="lista-salas">
+                    <!-- Listagem de salas existentes -->
+                </ul>
+            </div>
+
+            <!-- Gerenciar Profissionais -->
+            <div class="gerenciar-profissionais">
+                <h3>Gerenciar Profissionais</h3>
+                <label for="novo-profissional">Adicionar Novo Profissional:</label>
+                <input type="text" id="novo-profissional" placeholder="Nome do Profissional">
+                <button id="adicionar-profissional">Adicionar Profissional</button>
+                <ul id="lista-profissionais">
+                    <!-- Listagem de profissionais -->
+                </ul>
+            </div>
+
+            <!-- Configurações de Notificações -->
+            <div class="configuracoes-notificacoes">
+                <h3>Configurações de Notificações</h3>
+                <label for="tipo-notificacao">Escolher Tipo de Notificação:</label>
+                <select id="tipo-notificacao">
+                    <option value="som">Som</option>
+                    <option value="voz">Voz</option>
+                </select>
+                <button id="salvar-configuracoes">Salvar Configurações</button>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Sistema de Chamadas para Pacientes</p>
-    </footer>
-
-    <!-- Inclusão do SDK do Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <!-- Arquivo JS com a lógica -->
     <script src="script.js"></script>
 </body>
 </html>
-<!-- Área da Recepção -->
-<section id="area-recepcao">
-    <div class="recepcao-container">
-        <h2>Área da Recepção</h2>
-        
-        <!-- Lista de Pacientes em Espera -->
-        <div class="lista-pacientes">
-            <h3>Pacientes em Espera</h3>
-            <ul id="lista-pacientes">
-                <!-- Pacientes em espera serão listados aqui -->
-            </ul>
-        </div>
-
-        <!-- Controle de Chamada -->
-        <div class="controle-chamada">
-            <h3>Chamar Paciente</h3>
-            <label for="paciente-id">Selecione o Paciente:</label>
-            <select id="paciente-id">
-                <!-- Opções de pacientes serão adicionadas aqui -->
-            </select>
-            <label for="sala">Selecione a Sala:</label>
-            <input type="text" id="sala" placeholder="Número da Sala">
-            <button id="chamar-paciente">Chamar Paciente</button>
-        </div>
-
-        <!-- Histórico de Chamadas -->
-        <div class="historico-chamadas">
-            <h3>Histórico de Chamadas</h3>
-            <ul id="historico-lista">
-                <!-- Histórico de chamadas será mostrado aqui -->
-            </ul>
-        </div>
-    </div>
-</section>
-<!-- Área dos Profissionais -->
-<section id="area-profissionais">
-    <div class="profissionais-container">
-        <h2>Área dos Profissionais</h2>
-
-        <!-- Lista de Pacientes Chamados -->
-        <div class="lista-pacientes-chamados">
-            <h3>Pacientes Chamados</h3>
-            <ul id="lista-pacientes-chamados">
-                <!-- Pacientes chamados serão listados aqui -->
-            </ul>
-        </div>
-
-        <!-- Controle de Atendimento -->
-        <div class="controle-atendimento">
-            <h3>Controle de Atendimento</h3>
-            <label for="paciente-profissional-id">Selecione o Paciente:</label>
-            <select id="paciente-profissional-id">
-                <!-- Opções de pacientes serão adicionadas aqui -->
-            </select>
-            <button id="atender-paciente">Marcar como Concluído</button>
-        </div>
-
-        <!-- Histórico de Atendimentos -->
-        <div class="historico-atendimentos">
-            <h3>Histórico de Atendimentos</h3>
-            <ul id="historico-atendimentos-lista">
-                <!-- Histórico de atendimentos será mostrado aqui -->
-            </ul>
-        </div>
-    </div>
-</section>
-<!-- Área de Configurações -->
-<section id="area-configuracoes">
-    <div class="configuracoes-container">
-        <h2>Área de Configurações</h2>
-
-        <!-- Gerenciar Salas -->
-        <div class="gerenciar-salas">
-            <h3>Gerenciar Salas</h3>
-            <label for="nova-sala">Adicionar Nova Sala:</label>
-            <input type="text" id="nova-sala" placeholder="Nome da Sala">
-            <button id="adicionar-sala">Adicionar Sala</button>
-            <ul id="lista-salas">
-                <!-- Listagem de salas existentes -->
-            </ul>
-        </div>
-
-        <!-- Gerenciar Profissionais -->
-        <div class="gerenciar-profissionais">
-            <h3>Gerenciar Profissionais</h3>
-            <label for="novo-profissional">Adicionar Novo Profissional:</label>
-            <input type="text" id="novo-profissional" placeholder="Nome do Profissional">
-            <button id="adicionar-profissional">Adicionar Profissional</button>
-            <ul id="lista-profissionais">
-                <!-- Listagem de profissionais -->
-            </ul>
-        </div>
-
-        <!-- Configurações de Notificações -->
-        <div class="configuracoes-notificacoes">
-            <h3>Configurações de Notificações</h3>
-            <label for="tipo-notificacao">Escolher Tipo de Notificação:</label>
-            <select id="tipo-notificacao">
-                <option value="som">Som</option>
-                <option value="voz">Voz</option>
-            </select>
-            <button id="salvar-configuracoes">Salvar Configurações</button>
-        </div>
-    </div>
-</section>
