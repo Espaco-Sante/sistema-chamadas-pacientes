@@ -52,3 +52,96 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarHistorico();
 });
 "Atualizar credenciais do Supabase"
+// script.js (Parte da Área dos Profissionais)
+
+const supabaseUrl = 'https://your-supabase-url.supabase.co'; // Substitua com o seu URL do Supabase
+const supabaseKey = 'your-anon-key'; // Substitua com sua chave anônima
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// Função para carregar os pacientes chamados para atendimento
+async function carregarPacientesChamados() {
+    const { data, error } = await supabase
+        .from('chamadas')
+        .select('*')
+        .eq('status', 'chamado') // Verifica se o paciente foi chamado
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Erro ao carregar pacientes chamados:', error);
+        return;
+    }
+
+    const listaPacientesChamados = document.getElementById('lista-pacientes-chamados');
+    listaPacientesChamados.innerHTML = ''; // Limpa a lista antes de adicionar novos pacientes
+
+    // Adiciona os pacientes chamados à lista
+    data.forEach(paciente => {
+        const li = document.createElement('li');
+        li.textContent = `${paciente.nome} - Sala: ${paciente.sala}`;
+        listaPacientesChamados.appendChild(li);
+
+        // Popula o seletor de pacientes para o profissional marcar como atendido
+        const pacienteSelect = document.getElementById('paciente-profissional-id');
+        const option = document.createElement('option');
+        option.value = paciente.id;
+        option.textContent = paciente.nome;
+        pacienteSelect.appendChild(option);
+    });
+}
+
+// Função para marcar o atendimento como concluído
+async function marcarAtendimentoConcluido() {
+    const pacienteId = document.getElementById('paciente-profissional-id').value;
+
+    if (!pacienteId) {
+        alert('Selecione um paciente');
+        return;
+    }
+
+    // Atualizar o status do paciente para "atendido"
+    const { data, error } = await supabase
+        .from('chamadas')
+        .update({ status: 'atendido' })
+        .match({ id: pacienteId });
+
+    if (error) {
+        console.error('Erro ao marcar atendimento como concluído:', error);
+        return;
+    }
+
+    alert('Atendimento concluído com sucesso!');
+
+    // Atualiza a lista de pacientes chamados
+    carregarPacientesChamados();
+}
+
+// Função para carregar o histórico de atendimentos
+async function carregarHistoricoAtendimentos() {
+    const { data, error } = await supabase
+        .from('historico_atendimentos')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Erro ao carregar histórico de atendimentos:', error);
+        return;
+    }
+
+    const listaHistoricoAtendimentos = document.getElementById('historico-atendimentos-lista');
+    listaHistoricoAtendimentos.innerHTML = ''; // Limpa a lista antes de adicionar novos históricos
+
+    // Exibe o histórico de atendimentos
+    data.forEach(atendimento => {
+        const li = document.createElement('li');
+        li.textContent = `${atendimento.nome} - Sala: ${atendimento.sala} - Data: ${atendimento.data}`;
+        listaHistoricoAtendimentos.appendChild(li);
+    });
+}
+
+// Configura os eventos ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    carregarPacientesChamados();
+    carregarHistoricoAtendimentos();
+
+    document.getElementById('atender-paciente').addEventListener('click', marcarAtendimentoConcluido);
+});
