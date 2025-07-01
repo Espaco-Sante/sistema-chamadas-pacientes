@@ -153,4 +153,29 @@ button:hover {
 
 .gerenciar-salas input, .gerenciar-profissionais input, .configuracoes-notificacoes select {
     width: 100%;
-    padd
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #1e90ff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4682b4;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #444;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
