@@ -61,3 +61,62 @@ footer {
     bottom: 0;
     width: 100%;
 }
+/* Estilos para a Área da Recepção */
+#area-recepcao {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.recepcao-container {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.lista-pacientes, .controle-chamada, .historico-chamadas {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #444;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input[type="text"], select, button {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #1e90ff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4682b4;
+}
